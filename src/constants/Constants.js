@@ -1,10 +1,10 @@
 export const DEG_TO_RAD = 0.0174533;
 export const MAIN_BUTTON_DIAM = 90;
-export const CHILD_BUTTON_DIAM = 50;
+export const CHILD_BUTTON_DIAM = 45;
 export const NUM_CHILDREN = 5;
 export const M_X = 490;
 export const M_Y = 450;
 export const FLY_OUT_RADIUS = 120;
-export const SEPARATION_ANGLE = 40;
+export const SEPARATION_ANGLE = 45;
 export const FAN_ANGLE = (NUM_CHILDREN - 1) * SEPARATION_ANGLE;
 export const BASE_ANGLE = ((180 - FAN_ANGLE) / 2);

@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { mainButton, childButtonBefore, childButtonAfter } from './MenuStyles';
 import { NUM_CHILDREN } from '../../constants/Constants';
 import { range } from '../../util/Util';
+import { Motion } from 'react-motion';
 
 class Menu extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isOpen: false,
+      childButtons: [],
     };
 
     this.openMenu = this.openMenu.bind(this);
@@ -20,12 +22,22 @@ class Menu extends Component {
   renderChildren() {
     return range(NUM_CHILDREN).map(i => {
       return (
-        <div key={i} className="child-button" style={
+        <Motion key={i} style={
             this.state.isOpen ? childButtonAfter(i) : childButtonBefore()
           }
-        />
+        >
+          { ({width, height, top, left}) => <div className="child-button" style={{width, height, top, left}} /> }
+        </Motion>
       );
     });
+  }
+
+  componentDidMount() {
+    let childButtons = [];
+    range(NUM_CHILDREN).forEach(i => {
+      childButtons.push(this.renderChildren(i));
+    });
+    this.setState({ childButtons: childButtons.slice(0) });
   }
 
   render() {
